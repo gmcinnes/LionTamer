@@ -1,0 +1,65 @@
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+    ;;
+*)
+    ;;
+esac
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+#if [ -f ~/.bash_aliases ]; then
+#    . ~/.bash_aliases
+#fi
+
+# some more ls aliases
+#alias ll='ls -l'
+#alias la='ls -A'
+#alias l='ls -CF'
+
+# Add our OS X scripts if they exist
+if [ -d $HOME/Scripts ]; then
+  export PATH=$HOME/Scripts:$PATH
+fi
+
+# VI ftw
+export EDITOR=/usr/bin/vi
+
+# Turn the dingy bell off
+if [ `which xset` ]; then
+  xset b off
+fi
+
+# Use VI key bindings
+set -o vi
+
+# Fancy git enabled prompt
+if [ -f "$HOME/.git-completion.bash" ]; then
+  . $HOME/.git-completion.bash
+  export PS1='\h:\w$(__git_ps1 "(%s)") \u\$ '
+fi
+
+source ~/.cinderella.profile
