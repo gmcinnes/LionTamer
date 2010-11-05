@@ -1,4 +1,5 @@
 #
+#
 # Cookbook Name:: dotfiles 
 # Recipe:: default
 #
@@ -17,7 +18,7 @@ if ENV['DONT_TOUCH_MY_VIMRC'].nil?
     source "vimrc.erb"
   end
 
-  remote_directory "#{ENV['HOME']}/vim" do
+  remote_directory "#{ENV['HOME']}/.vim" do
     source "vim"
   end
   
