@@ -47,7 +47,7 @@ script "remove old macports" do
 end
 
 execute "download homebrew installer" do
-  command "/usr/bin/curl -sfL http://github.com/mxcl/homebrew/tarball/master | /usr/bin/tar xz -m --strip 1"
+  command "/usr/bin/curl -sfL https://github.com/mxcl/homebrew/tarball/master | /usr/bin/tar xz -m --strip 1"
   cwd     "#{ENV['HOME']}/Developer"
   not_if  "test -e ~/Developer/bin/brew"
 end

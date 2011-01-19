@@ -29,12 +29,12 @@ This script will not prompt before it does anything :)
 
 First make sure [xcode is installed][xcode], then do:
 
-    eval $"`curl http://gist.github.com/raw/647636/install_leopard_tamer.sh`"
+    eval $"`curl https://gist.github.com/raw/647636/install_leopard_tamer.sh`"
 
-[gist]:http://http://gist.github.com/raw/647636/install_leopard_tamer.sh
+[gist]:https://http://gist.github.com/raw/647636/install_leopard_tamer.sh
 [xcode]:http://developer.apple.com/technologies/xcode.html
 [chef]:http://www.opscode.com/chef/
-[homebrew]:http://github.com/mxcl/homebrew
+[homebrew]:https://github.com/mxcl/homebrew
 [rvm]:http://rvm.beginrescueend.com/
 [macports]:http://www.macports.org/
 [git]:http://git-scm.com/

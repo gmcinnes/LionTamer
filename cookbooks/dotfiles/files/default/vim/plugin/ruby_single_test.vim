@@ -5,7 +5,7 @@
 " Last Change:	Nov 19, 2009
 " Version: 1.0.1
 " Author:	Doug McInnes <doug@dougmcinnes.com>
-" URL: http://github.com/dmcinnes/ruby_single_test/tree
+" URL: https://github.com/dmcinnes/ruby_single_test/tree
 "
 " When a ruby test file with your cursor within a test block, hit
 " <leader>.

@@ -12,7 +12,7 @@ script "installing rvm to ~/Developer" do
   code <<-EOS
     source ~/.cinderella.profile
     if [[ ! -d ~/Developer/.rvm ]]; then
-      git clone http://github.com/wayneeseguin/rvm.git rvm
+      git clone https://github.com/wayneeseguin/rvm.git rvm
       cd rvm
       bin/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cinderella.log 2>&1
     fi
