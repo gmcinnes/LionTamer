@@ -15,7 +15,7 @@ script "installing rvm to ~/Developer" do
       rm -rf rvm
       git clone https://github.com/wayneeseguin/rvm.git rvm
       cd rvm
-      bin/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cinderella.log 2>&1
+      binscripts/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cinderella.log 2>&1
     fi
   EOS
 end
