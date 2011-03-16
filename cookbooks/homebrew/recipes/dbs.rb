@@ -21,7 +21,7 @@ script "Setting mysql root user to have MDI throwaway password" do
     do
       # Break early if a password has been set
       mysqladmin -u root password 2>&1 | grep 'Access denied'
-      if [ $? -eq 0]; then
+      if [ $? -eq 0 ]; then
         echo "Password already set"
         break; 
       fi
