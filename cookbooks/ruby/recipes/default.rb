@@ -4,7 +4,7 @@
 #
 
 DEFAULT_RUBY_VERSION = "1.9.2-p180"
-RUBY_1_8_7 = "1.8.7-p302"
+RUBY_1_8_7 = "1.8.7-p334"
 JRUBY_1_5_3 = "jruby-1.5.3"
 
 script "installing rvm to ~/Developer" do
