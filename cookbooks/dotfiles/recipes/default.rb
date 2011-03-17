@@ -4,6 +4,14 @@
 # Recipe:: default
 #
 
+template "#{ENV['HOME']}/.editrc" do
+  source "dot_editrc.erb"
+end
+
+template "#{ENV['HOME']}/.inputrc" do
+  source "dot_inputrc.erb"
+end
+
 
 template "#{ENV['HOME']}/.bash_profile" do
   source "bash_profile.erb"
