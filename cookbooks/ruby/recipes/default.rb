@@ -11,13 +11,50 @@ script "installing rvm to ~/Developer" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    if [[ ! -d ~/Developer/.rvm ]]; then
-      rm -rf rvm
+    if [[ -d ~/Developer/.rvm ]]; then
+      rm -rf ~/Developer/.rvm
+    fi
+   
+   if [[ -d ~/.rvm ]]; then
+      rm -rf ~/.rvm
+   fi 
+
+   if [[ -d ~/.rvmrc ]]; then
+      rm -rf ~/.rvmrc
+   fi
+
+   if [[ -f ~/.rvmrc ]]; then
+      rm -rf ~/.rvmrc
+   fi
+
+    if [[ ! -d ~/Developer/rvm ]]; then
       git clone https://github.com/wayneeseguin/rvm.git rvm
       cd rvm
-      ./install --prefix #{ENV['HOME']}/Developer/. >> ~/.cinderella.log 2>&1
+      ./install --prefix #{ENV['HOME']}/Developer >> ~/.cinderella.log 2>&1
+      cd ..
+      rm -rf rvm
     fi
   EOS
+end
+
+# Tell us about the default gems
+template "#{ENV['HOME']}/Developer/rvm/gemsets/default.gems" do
+  source "default.gems.erb"
+end
+
+# And gemrc
+template "#{ENV['HOME']}/.gemrc" do
+  source "dot.gemrc.erb"
+end
+
+# And debugger
+template "#{ENV['HOME']}/.rdebugrc" do
+    source "dot.rdebugrc.erb"
+end
+
+# And irb
+template "#{ENV['HOME']}/.irbrc" do
+    source "dot.irbrc.erb"
 end
 
 script "updating rvm to the latest stable version" do
@@ -29,9 +66,6 @@ script "updating rvm to the latest stable version" do
   EOS
 end
 
-template "#{ENV['HOME']}/Developer/.rvm/gemsets/default.gems" do
-  source "default.gems.erb"
-end
 
 script "installing ruby 1.9.2" do
   interpreter "bash"
@@ -75,13 +109,7 @@ script "ensuring a default ruby is set" do
 end
 
 execute "cleanup rvm build artifacts" do
-  command "find ~/Developer/.rvm/src -depth 1 | grep -v src/rvm | xargs rm -rf "
+  command "find ~/Developer/rvm/src -depth 1 | grep -v src/rvm | xargs rm -rf "
 end
 
-template "#{ENV['HOME']}/.gemrc" do
-  source "dot.gemrc.erb"
-end
 
-template "#{ENV['HOME']}/.rdebugrc" do
-    source "dot.rdebugrc.erb"
-end
