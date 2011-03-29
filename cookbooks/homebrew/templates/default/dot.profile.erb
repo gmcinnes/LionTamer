@@ -8,9 +8,10 @@ NODE_PATH="<%= @home %>/Developer/lib/node"; export NODE_PATH
 
 export CONFIGURE_ARGS="--with-cflags='$CFLAGS' --with-ldflags='$LDFLAGS'"
 
-export rvm_path=<%= @home %>/Developer/.rvm
-if [[ -s <%= @home %>/Developer/.rvm/scripts/rvm ]] ; then
-  source <%= @home %>/Developer/.rvm/scripts/rvm
+export rvm_prefix=<%= @home %>/Developer/
+export rvm_path=<%= @home %>/Developer/rvm
+if [[ -s <%= @home %>/Developer/rvm/scripts/rvm ]] ; then
+  source <%= @home %>/Developer/rvm/scripts/rvm
 fi
 
 if [[ -d <%= @home %>/Developer/Cellar/python/2.7/bin ]]; then
