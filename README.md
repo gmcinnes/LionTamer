@@ -31,7 +31,7 @@ First make sure [xcode is installed][xcode], then do:
 
     eval $"`curl https://gist.github.com/raw/647636/install_leopard_tamer.sh`"
 
-[gist]:https://http://gist.github.com/raw/647636/install_leopard_tamer.sh
+[gist]:https://gist.github.com/raw/647636/install_leopard_tamer.sh
 [xcode]:http://developer.apple.com/technologies/xcode.html
 [chef]:http://www.opscode.com/chef/
 [homebrew]:https://github.com/mxcl/homebrew
