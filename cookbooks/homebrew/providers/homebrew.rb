@@ -48,9 +48,9 @@ class Chef
           Chef::Log.info("Configuring #{name} to automatically start on login")
           destination_plist = "#{ENV['HOME']}/Library/LaunchAgents/#{plist_for(name)}"
           system("mkdir -p #{ENV['HOME']}/Library/LaunchAgents")
-          system("launchctl unload -w -F #{destination_plist} >/dev/null 2>&1")
-          system("cp -f #{plist_fullpath_for(name)} #{destination_plist} >/dev/null 2>&1")
-          system("launchctl load -w -F #{destination_plist} >/dev/null 2>&1")
+          system("launchctl unload -w -F #{destination_plist}")
+          system("cp -f #{plist_fullpath_for(name)} #{destination_plist}")
+          system("launchctl load -w -F #{destination_plist}")
         end
 
         def install_package(name, version)
@@ -60,9 +60,18 @@ class Chef
             unless ::File.directory?("#{PREFIX}/var/mysql")
               system("#{PREFIX}/Cellar/mysql/#{latest_version_for(name)}/bin/mysql_install_db > /dev/null")
             end
+
+            # Hack around the change in data directory from mysql 5.1.x
+            # to 5.5.x
+            case version
+            when "5.5.10"
+              system("cd #{PREFIX}/Cellar/mysql/5.5.10/ && scripts/mysql_install_db --basedir=#{PREFIX}/Cellar/mysql/5.5.10 --tmpdir=/tmp")
+            end
+
           else
             raise "Unknown Homebrew DB: #{name}"
           end
+
           load_plist_for(name)
         end
       end
