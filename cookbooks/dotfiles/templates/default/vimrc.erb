@@ -1,50 +1,65 @@
-set nocompatible          " We're running Vim, not Vi!
-  syntax on                 " Enable syntax highlighting
-  filetype plugin indent on " Enable filetype-specific indenting and plugins
-
-  " Load matchit (% to bounce from do to end, etc.)
-  runtime! macros/matchit.vim
-
-  augroup myfiletypes
-    " Clear old autocmds in group
-    autocmd!
-    " autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
-  augroup END
-autocmd BufNewFile,BufRead COMMIT_EDITMSG set filetype=gitcommit
-
-autocmd FileType make   set noexpandtab
-
+" Application settings
+" ====================
+set nocompatible
 let mapleader = ","
-set tabstop=2
+set nobackup
+set wildmenu
+set wildmode=list:longest
+set textwidth=79
+set incsearch
+set showmatch
 set smarttab
 set shiftwidth=2
+set laststatus=2
 set autoindent
 set expandtab
 set backspace=start,indent,eol
 set number
 set hlsearch
-syntax on
-colorscheme darkblue
+set mouse=a
+filetype plugin indent on
+runtime! macros/matchit.vim
 
-let g:fuzzy_ignore = "*.log"
-let g:fuzzy_matching_limit = 70
-set go-=T
+" Visual things
+" =============
+set ruler
+set scrolloff=5
+set tabstop=2
+set softtabstop=2   " Tabs are 2 spaces wide
+set autoindent
 
-if has("gui_running")
-  colorscheme darkblue
-  set columns=80 lines=50
-  set transparency=8
-  set guifont="Andale Mono":h14
-  set guioptions=egmrLt
-  set enc=utf-8
-  hi LineNr guifg=#333333
-endif
+" Key mappings
+" ============
 map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>b :FuzzyFinderBuffer<CR>
 map <leader>d :execute 'NERDTreeToggle ' .getcwd()<CR>
 map <leader>j :TlistToggle<CR>
 
+
+" File type tweaks
+" ================
+augroup myfiletypes
+  " Clear old autocmds in group
+  autocmd!
+  " autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
+augroup END
+autocmd BufNewFile,BufRead COMMIT_EDITMSG set filetype=gitcommit
 au BufNewFile,BufRead COMMIT_EDITMSG setlocal textwidth=75 fileencoding=utf-8 encoding=utf-8 filetype=gitcommit
 au BufNewFile,BufRead *.mxml set filetype=mxml
 au BufNewFile,BufRead *.as set filetype=actionscript
+autocmd BufNewFile,BufRead,BufEnter Gemfile,Rakefile,Capfile,Vagrantfile set filetype=ruby
+autocmd BufWritePost * if getline(1) =~ "^#!" | silent !chmod a+x <afile> | endif | endif
+autocmd FocusLost * :wa
+autocmd FileType make   set noexpandtab
+let g:fuzzy_ignore = "*.log"
+let g:fuzzy_matching_limit = 70
+set go-=T
+
+syntax on
+
+if &term == 'xterm-256color'
+  set t_Co=256
+  set background=light
+  colorscheme solarized 
+endif
