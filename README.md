@@ -22,7 +22,10 @@ Quick install
   ctags-exuberant, bash-completion
 * Use homebrew to Install mysql and populate it with MDI's
   standard throwaway user / pass
-* Install macvim from its tarball
+* Use homebrew to install memcached, but don't start it with a LaunchAgent by
+  default
+* Install macvim from homebrew and tell it to take precedence over the system
+  vim 
 * Install a sane set of vim configs from a template
 
 This script will not prompt before it does anything :)
