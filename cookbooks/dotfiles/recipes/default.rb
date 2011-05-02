@@ -40,16 +40,14 @@ template "#{ENV['HOME']}/.autospec" do
   source "dot.autospec.erb"
 end
 
-script "installed macvim from github" do
+script "install C ext. for Command-T vim plugin" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    if [ ! -e ~/Developer/bin/mvim ]; then
-      rm -rf /Applications/MacVim.app
-      curl -L https://github.com/downloads/b4winckler/macvim/MacVim-snapshot-55.tbz -o - | tar -xvf -
-      cd MacVim-snapshot-55
-      cp mvim ~/Developer/bin
-      cp -r MacVim.app /Applications/
-    fi
+    cd ~/.vim/bundle/command-t/ruby/command-t
+    rvm use system
+    ruby extconf.rb
+    make clean
+    make
   EOS
 end
