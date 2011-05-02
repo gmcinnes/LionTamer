@@ -12,6 +12,8 @@ require root + '/providers/homebrew'
   homebrew pkg
 end
 
+homebrew "macvim --override-system-vim"
+
 template "#{ENV['HOME']}/.cinderella.profile.custom" do
   mode 0700
   owner ENV['USER']
