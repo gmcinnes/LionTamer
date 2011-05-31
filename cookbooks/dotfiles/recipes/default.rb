@@ -25,6 +25,18 @@ if ENV['DONT_TOUCH_MY_VIMRC'].nil?
   template "#{ENV['HOME']}/.vimrc" do
     source "vimrc.erb"
   end
+  
+  directory "#{ENV['HOME']}/.vim" do
+    action 'create'
+  end
+  
+  directory "#{ENV['HOME']}/.vim/bundle" do
+    action 'create'
+  end
+  
+  remote_directory "#{ENV['HOME']}/.vim/bundle" do
+    source "vim/bundle"
+  end
 
   remote_directory "#{ENV['HOME']}/.vim" do
     source "vim"
