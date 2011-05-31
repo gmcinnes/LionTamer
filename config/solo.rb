@@ -3,7 +3,7 @@
 #
 # smeagol_root = "#{Dir.tmpdir}/smeagol"
 
-smeagol_root = "#{ENV['HOME']/.leopardtamer}"
+smeagol_root = "#{ENV['HOME']./leopardtamer"
 log_level          :debug
 log_location       STDOUT
 sandbox_path       "#{smeagol_root}/sandboxes"
