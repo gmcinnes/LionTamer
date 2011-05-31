@@ -27,19 +27,15 @@ if ENV['DONT_TOUCH_MY_VIMRC'].nil?
   end
   
   directory "#{ENV['HOME']}/.vim" do
-    action 'create'
+    action 'delete'
+    recursive true
   end
   
-  directory "#{ENV['HOME']}/.vim/bundle" do
-    action 'create'
-  end
-  
-  remote_directory "#{ENV['HOME']}/.vim/bundle" do
-    source "vim/bundle"
-  end
 
   remote_directory "#{ENV['HOME']}/.vim" do
+
     source "vim"
+    recursive true
   end
   
   directory "#{ENV['HOME']}/.vimswap" do
