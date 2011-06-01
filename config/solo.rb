@@ -1,10 +1,9 @@
 #
 # Chef Solo Config File
 #
-# smeagol_root = "#{Dir.tmpdir}/smeagol"
 
 smeagol_root = "#{ENV['HOME']}/.leopardtamer"
-log_level          :debug
+log_level          :warn
 log_location       STDOUT
 sandbox_path       "#{smeagol_root}/sandboxes"
 file_cache_path    "#{smeagol_root}/cookbooks"
