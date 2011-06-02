@@ -54,7 +54,6 @@ au BufNewFile,BufRead COMMIT_EDITMSG setlocal textwidth=75 fileencoding=utf-8 en
 au BufNewFile,BufRead *.mxml set filetype=mxml
 au BufNewFile,BufRead *.as set filetype=actionscript
 autocmd BufNewFile,BufRead,BufEnter Gemfile,Rakefile,Capfile,Vagrantfile set filetype=ruby
-autocmd BufWritePost * if getline(1) =~ "^#!" | silent !chmod a+x <afile> | endif | endif
 autocmd FocusLost * :wa
 autocmd FileType make   set noexpandtab
 let g:fuzzy_ignore = "*.log"
