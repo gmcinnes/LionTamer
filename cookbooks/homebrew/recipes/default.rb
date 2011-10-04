@@ -84,7 +84,11 @@ execute "setup cinderella profile sourcing in ~/.profile" do
   not_if  "grep -q 'cinderella.profile' ~/.profile"
 end
 
-homebrew "git"
+execute "install git" do
+  command "brew install git"
+  not if "test -e ~/Developer/bin/git"
+end
+
 script "updating homebrew from github" do
   interpreter "bash"
   code <<-EOS
