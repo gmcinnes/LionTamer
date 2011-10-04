@@ -86,7 +86,7 @@ end
 
 execute "install git" do
   command "brew install git"
-  not if "test -e ~/Developer/bin/git"
+  not_if "test -e ~/Developer/bin/git"
 end
 
 script "updating homebrew from github" do
