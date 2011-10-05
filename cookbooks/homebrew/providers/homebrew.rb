@@ -20,7 +20,6 @@ class Chef
         end
 
         def install_package(name, version)
-          remove_package(name, version)
           run_brew_command("#{HOMEBREW} install --force #{name}")
         end
 
