@@ -30,7 +30,8 @@ class Chef
         def run_brew_command(command)
           Chef::Log.debug(command)
           run_command_with_systems_locale(
-            :command => command
+            :command => command,
+            :ignore_failure => true
           )
         end
       end
