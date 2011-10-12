@@ -30,7 +30,7 @@ script "installing rvm to ~/Developer" do
     if [[ ! -d ~/Developer/rvm ]]; then
       git clone https://github.com/wayneeseguin/rvm.git rvm
       cd rvm
-      ./install --prefix #{ENV['HOME']}/Developer >> ~/.cinderella.log 2>&1
+      ./install --path #{ENV['HOME']}/Developer/rvm >> ~/.cinderella.log 2>&1
       cd ..
       rm -rf rvm
     fi
