@@ -62,7 +62,7 @@ script "updating rvm to the latest stable version" do
   code <<-EOS
     source ~/.cinderella.profile
     rvm reload
-    rvm update -—head >> ~/.cinderella.log 2>&1
+    rvm get head >> ~/.cinderella.log 2>&1
   EOS
 end
 
