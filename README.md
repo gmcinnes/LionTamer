@@ -32,7 +32,7 @@ This script will not prompt before it does anything :)
 
 First make sure [xcode is installed][xcode], then do:
 
-    eval $"`curl https://gist.github.com/raw/647636/install_leopard_tamer.sh`"
+    eval $"`curl https://raw.github.com/gist/647636/install_leopard_tamer.sh`"
 
 [gist]:https://gist.github.com/raw/647636/install_leopard_tamer.sh
 [xcode]:http://developer.apple.com/technologies/xcode.html
