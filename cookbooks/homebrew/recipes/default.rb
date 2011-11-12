@@ -89,7 +89,7 @@ script "install git" do
   code <<-EOS
     source ~/.cinderella.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    ~/Developer/bin/brew install git  
+    ~/Developer/bin/brew install git  >> ~/.cinderella.log 2>&1
   EOS
 end
 
