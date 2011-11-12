@@ -87,8 +87,7 @@ end
 
 script "install git" do
   code <<-EOS
-    source ~/.cinderella.profile
-    brew install git  >> ~/.cinderella.log 2>&1
+    source ~/.cinderella.profile && brew install git  >> ~/.cinderella.log 2>&1
   EOS
 end
 
