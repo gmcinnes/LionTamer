@@ -86,7 +86,11 @@ execute "setup cinderella profile sourcing in ~/.profile" do
 end
 
 execute "install git" do
-  command "brew install git"
+  code <<-EOS
+    source ~/.cinderella.profile
+    PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
+    ~/Developer/bin/brew install git  
+  EOS
   not_if "test -e ~/Developer/bin/git"
 end
 
