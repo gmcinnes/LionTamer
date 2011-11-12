@@ -88,8 +88,7 @@ end
 script "install git" do
   code <<-EOS
     source ~/.cinderella.profile
-    PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    ~/Developer/bin/brew install git  >> ~/.cinderella.log 2>&1
+    brew install git  >> ~/.cinderella.log 2>&1
   EOS
 end
 
@@ -97,7 +96,6 @@ script "updating homebrew from github" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    ~/Developer/bin/brew update >> ~/.cinderella.log 2>&1
+    brew update >> ~/.cinderella.log 2>&1
   EOS
 end
