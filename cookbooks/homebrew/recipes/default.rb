@@ -85,7 +85,7 @@ execute "setup cinderella profile sourcing in ~/.profile" do
   not_if  "grep -q 'cinderella.profile' ~/.profile"
 end
 
-execute "install git" do
+script "install git" do
   code <<-EOS
     source ~/.cinderella.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
