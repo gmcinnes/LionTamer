@@ -91,7 +91,6 @@ script "install git" do
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
     ~/Developer/bin/brew install git  
   EOS
-  not_if "test -e ~/Developer/bin/git"
 end
 
 script "updating homebrew from github" do
