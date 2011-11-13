@@ -14,7 +14,7 @@ script "Do mysql post install tasks" do
   interpreter "bash"
   code <<-EOS
     unset TMPDIR
-    mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=~/Developer/var/mysql --tmpdir=/tmp
+    mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=`brew --prefix`/var/mysql --tmpdir=/tmp
   EOS
 end
 
