@@ -9,14 +9,11 @@ require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 require 'etc'
 
-directory "#{ENV['HOME']}/Developer" do
-  action :create
-end
 
 script "remove old homebrew" do
   interpreter "bash"
   code <<-EOS
-    if [ "`which brew`" != "" ] &&  [ "`which brew`" != "#{ENV['HOME']}/Developer/bin/brew" ]; then
+    if [ "`which brew`" != "" ] &&  [ "`which brew`" != "/usr/local/brew" ]; then
       cd `brew --prefix`
       rm -rf Cellar
       brew prune
@@ -47,10 +44,8 @@ script "remove old macports" do
 end
 
 execute "download homebrew installer" do
-  command "mkdir -p ~/Developer"
-  command "/usr/bin/curl -sfL https://github.com/mxcl/homebrew/tarball/master | /usr/bin/tar xz -m --strip 1 -C ~/Developer"
-  cwd     "#{ENV['HOME']}/Developer"
-  not_if  "test -e ~/Developer/bin/brew"
+  command "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/gist/323731)\""
+  not_if  "test -e /usr/local/brew"
 end
 
 script "install_something" do
