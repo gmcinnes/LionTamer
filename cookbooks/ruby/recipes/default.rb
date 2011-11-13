@@ -7,13 +7,10 @@ DEFAULT_RUBY_VERSION = "1.9.2-p180"
 RUBY_1_8_7 = "1.8.7-p334"
 JRUBY_1_5_3 = "jruby-1.5.3"
 
-script "installing rvm to ~/Developer" do
+script "installing rvm" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    if [[ -d ~/Developer/.rvm ]]; then
-      rm -rf ~/Developer/.rvm
-    fi
    
    if [[ -d ~/.rvm ]]; then
       rm -rf ~/.rvm
@@ -27,13 +24,8 @@ script "installing rvm to ~/Developer" do
       rm -rf ~/.rvmrc
    fi
 
-    if [[ ! -d ~/Developer/rvm ]]; then
-      git clone https://github.com/wayneeseguin/rvm.git rvm
-      cd rvm
-      ./install --path #{ENV['HOME']}/Developer/rvm >> ~/.cinderella.log 2>&1
-      cd ..
-      rm -rf rvm
-    fi
+   bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+    
   EOS
 end
 
