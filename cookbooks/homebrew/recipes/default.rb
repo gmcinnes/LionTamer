@@ -9,14 +9,11 @@ require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 require 'etc'
 
-directory "#{ENV['HOME']}/Developer" do
-  action :create
-end
 
 script "remove old homebrew" do
   interpreter "bash"
   code <<-EOS
-    if [ "`which brew`" != "" ] &&  [ "`which brew`" != "#{ENV['HOME']}/Developer/bin/brew" ]; then
+    if [ "`which brew`" != "" ] &&  [ "`which brew`" != "/usr/local/brew" ]; then
       cd `brew --prefix`
       rm -rf Cellar
       brew prune
@@ -47,9 +44,8 @@ script "remove old macports" do
 end
 
 execute "download homebrew installer" do
-  command "/usr/bin/curl -sfL https://github.com/mxcl/homebrew/tarball/master | /usr/bin/tar xz -m --strip 1"
-  cwd     "#{ENV['HOME']}/Developer"
-  not_if  "test -e ~/Developer/bin/brew"
+  command "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/gist/323731)\""
+  not_if  "test -e /usr/local/brew"
 end
 
 script "install_something" do
@@ -85,15 +81,13 @@ execute "setup cinderella profile sourcing in ~/.profile" do
 end
 
 execute "install git" do
-  command "brew install git"
-  not_if "test -e ~/Developer/bin/git"
+  command "source ~/.cinderella.profile && brew install git  >> ~/.cinderella.log 2>&1"
 end
 
 script "updating homebrew from github" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    ~/Developer/bin/brew update >> ~/.cinderella.log 2>&1
+    brew update >> ~/.cinderella.log 2>&1
   EOS
 end

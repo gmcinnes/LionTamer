@@ -10,6 +10,14 @@ require root + '/providers/homebrew'
 THROWAWAY_PASSWORD = 'spamhead'
 homebrew_db "mysql"
 
+script "Do mysql post install tasks" do
+  interpreter "bash"
+  code <<-EOS
+    unset TMPDIR
+    mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=`brew --prefix`/var/mysql --tmpdir=/tmp
+  EOS
+end
+
 script "Setting mysql root user to have MDI throwaway password" do
   interpreter "bash"
   code <<-EOS
