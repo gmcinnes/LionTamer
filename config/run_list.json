@@ -1,5 +1,5 @@
 {
-  "recipes": ["gcc",
+  "recipes": [
      "homebrew",  "homebrew::dbs", "homebrew::misc", "git",
      "ruby", "ruby::irbrc",
      "dotfiles"
