@@ -30,7 +30,7 @@ script "installing rvm" do
 end
 
 # Tell us about the default gems
-template "#{ENV['HOME']}/Developer/rvm/gemsets/default.gems" do
+template "#{ENV['HOME']}/.rvm/gemsets/default.gems" do
   source "default.gems.erb"
 end
 
