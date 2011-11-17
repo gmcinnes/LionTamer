@@ -8,11 +8,10 @@ root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 
-%w(tig ack imagemagick sqlite wget hub fortune proctools markdown ctags-exuberant bash-completion memcached).each do |pkg|
+%w(tig ack imagemagick sqlite wget hub fortune proctools markdown ctags-exuberant bash-completion memcached pow).each do |pkg|
   homebrew pkg
 end
 
-homebrew "macvim --override-system-vim"
 
 template "#{ENV['HOME']}/.cinderella.profile.custom" do
   mode 0700
