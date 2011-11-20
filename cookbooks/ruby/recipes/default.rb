@@ -4,29 +4,31 @@
 #
 include_recipe "homebrew"
 
-DEFAULT_RUBY_VERSION = "1.9.2-p180"
-RUBY_1_8_7 = "1.8.7-p334"
-JRUBY_1_5_3 = "jruby-1.5.3"
+DEFAULT_RUBY_VERSION = "1.9.2"
+RUBY_1_8_7 = "1.8.7"
+JRUBY = "jruby"
 
 script "installing rvm" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-   
-   if [[ -d ~/.rvm ]]; then
-      rm -rf ~/.rvm
-   fi 
+  
+   if [ `which rvm` != 0]; then
+     if [[ -d ~/.rvm ]]; then
+        rm -rf ~/.rvm
+     fi 
 
-   if [[ -d ~/.rvmrc ]]; then
-      rm -rf ~/.rvmrc
-   fi
+     if [[ -d ~/.rvmrc ]]; then
+        rm -rf ~/.rvmrc
+     fi
 
-   if [[ -f ~/.rvmrc ]]; then
-      rm -rf ~/.rvmrc
-   fi
+     if [[ -f ~/.rvmrc ]]; then
+        rm -rf ~/.rvmrc
+     fi
 
-   bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
-   echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bash_profile    
+     bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+     echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.cinderella.profile
+    fi 
   EOS
 end
 
@@ -86,9 +88,9 @@ script "installing jruby 1.5.3"  do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    `rvm list | grep -q '#{JRUBY_1_5_3}'`
+    `rvm list | grep -q '#{JRUBY}'`
     if [ $? -ne 0 ]; then
-      rvm install #{JRUBY_1_5_3}
+      rvm install #{JRUBY}
     fi
   EOS
 end

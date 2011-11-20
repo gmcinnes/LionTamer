@@ -8,7 +8,7 @@
 # require root + '/resources/homebrew'
 # require root + '/providers/homebrew'
 
-%w(tig ack imagemagick sqlite wget hub fortune proctools markdown ctags bash-completion mysql pow).each do |pkg|
+%w(tig ack imagemagick sqlite wget hub fortune proctools markdown ctags bash-completion mysql).each do |pkg|
   homebrew pkg
 end
 
