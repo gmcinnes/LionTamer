@@ -3,12 +3,13 @@
 # Recipe:: dbs
 #
 
-root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+# root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+# 
+# require root + '/resources/homebrew'
+# require root + '/providers/homebrew'
 
-require root + '/resources/homebrew'
-require root + '/providers/homebrew'
 THROWAWAY_PASSWORD = 'spamhead'
-homebrew_db "mysql"
+homebrew "mysql"
 
 script "Do mysql post install tasks" do
   interpreter "bash"

@@ -3,17 +3,17 @@
 # Recipe:: homebrew
 #
 
-root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
-
-require root + '/resources/homebrew'
-require root + '/providers/homebrew'
+ root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+# 
+ require root + '/resources/homebrew'
+ require root + '/providers/homebrew'
 require 'etc'
 
 
 script "remove old homebrew" do
   interpreter "bash"
   code <<-EOS
-    if [ "`which brew`" != "" ] &&  [ "`which brew`" != "/usr/local/brew" ]; then
+    if [ "`which brew`" != "" ] &&  [ "`which brew`" != "/usr/local/bin/brew" ]; then
       cd `brew --prefix`
       rm -rf Cellar
       brew prune
@@ -45,7 +45,7 @@ end
 
 execute "download homebrew installer" do
   command "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/gist/323731)\""
-  not_if  "test -e /usr/local/brew"
+  not_if  "test -e /usr/local/bin/brew"
 end
 
 script "install_something" do
@@ -80,8 +80,17 @@ execute "setup cinderella profile sourcing in ~/.profile" do
   not_if  "grep -q 'cinderella.profile' ~/.profile"
 end
 
-execute "install git" do
-  command "source ~/.cinderella.profile && brew install git  >> ~/.cinderella.log 2>&1"
+script "install git" do
+  interpreter "bash"
+  code <<-EOS
+  if [ "`which git`" != "" ] &&  [ "`which brew`" != "/usr/local/bin/git" ]; then
+    source ~/.cinderella.profile && brew install git  >> ~/.cinderella.log 2>&1
+    result=$?
+    if [ $result -eq 0 || $result -eq 1 ]; then
+      exit 0
+    fi
+  fi
+  EOS
 end
 
 script "updating homebrew from github" do

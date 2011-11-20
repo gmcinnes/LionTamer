@@ -2,9 +2,10 @@
 # Cookbook Name:: git
 # Recipe:: default
 #
-root = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "homebrew"))
-require root + '/resources/homebrew'
-require root + '/providers/homebrew'
+#root = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "homebrew"))
+#require root + '/resources/homebrew'
+#require root + '/providers/homebrew'
+include_recipe "homebrew"
 require 'etc'
 
 module GitInfoHelpers

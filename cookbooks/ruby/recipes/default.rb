@@ -2,6 +2,7 @@
 # Cookbook Name:: ruby
 # Recipe:: default
 #
+include_recipe "homebrew"
 
 DEFAULT_RUBY_VERSION = "1.9.2-p180"
 RUBY_1_8_7 = "1.8.7-p334"

@@ -12,7 +12,6 @@ class Chef
           @current_resource = Chef::Resource::Package.new(@new_resource.name)
           @current_resource.package_name(@new_resource.package_name)
           @current_resource.version(current_installed_version)
-
           @current_resource
         end
 
@@ -119,4 +118,4 @@ class Chef
   end
 end
 
-Chef::Platform.set :platform => :mac_os_x, :resource => :package, :provider => Chef::Provider::Package::Homebrew
+#Chef::Platform.set :platform => :mac_os_x, :resource => :package, :provider => Chef::Provider::Package::Homebrew

@@ -2,7 +2,7 @@
 # Chef Solo Config File
 #
 
-smeagol_root = "#{ENV['HOME']}/.leopardtamer"
+smeagol_root = "#{ENV['HOME']}/.liontamer"
 log_level          :warn
 log_location       STDOUT
 sandbox_path       "#{smeagol_root}/sandboxes"
